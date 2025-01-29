@@ -1,9 +1,8 @@
 //package com.yamlToProject.Contract.controller;
 //
 //import com.yamlToProject.Contract.api.ApiUtil;
-//import com.yamlToProject.Contract.api.CustomerApi;
+//import com.yamlToProject.Contract.api.DefaultApi;
 //import com.yamlToProject.Contract.model.ApiAccountGet200ResponseInner;
-//import com.yamlToProject.Contract.model.Customer;
 //import io.swagger.v3.oas.annotations.Operation;
 //import io.swagger.v3.oas.annotations.Parameter;
 //import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -15,7 +14,6 @@
 //import org.springframework.http.HttpStatus;
 //import org.springframework.http.MediaType;
 //import org.springframework.http.ResponseEntity;
-//
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +22,7 @@
 //import java.util.List;
 //import java.util.Optional;
 //
-//public class CustomerController implements CustomerApi {
-//
-//
+//public class Def implements DefaultApi {
 //    public Optional<NativeWebRequest> getRequest() {
 //        return Optional.empty();
 //    }
@@ -73,5 +69,4 @@
 //        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 //
 //    }
-//
 //}

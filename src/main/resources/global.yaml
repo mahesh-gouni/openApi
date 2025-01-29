@@ -1,0 +1,261 @@
+openapi: 3.0.1
+info:
+  title: Hotel Manning Mahi Dev API
+  description: This is a sample Spring Boot RESTful service using springdoc-openapi
+    and OpenAPI 3.
+  contact:
+    name: Manning
+  version: v0.0.1
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /api/v1/generalParaTotal/create:
+    post:
+      tags:
+        - general-para-total-controller
+      operationId: addGeneralParaTotal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeneralParaTotal"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/auth/signup:
+    post:
+      tags:
+        - user-controller
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/auth/login:
+    post:
+      tags:
+        - user-controller
+      operationId: authenticateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    GeneralParaTotal:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        hotelInfo:
+          $ref: "#/components/schemas/HotelInfo"
+        generalParameters:
+          $ref: "#/components/schemas/GeneralParameters"
+        publicAreaSiteManager:
+          $ref: "#/components/schemas/PublicAreaSiteManager"
+        roomTypeManager:
+          $ref: "#/components/schemas/RoomTypeManager"
+        leavesManager:
+          $ref: "#/components/schemas/LeavesManager"
+    GeneralParameters:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        noOfHotelEntrances:
+          type: integer
+          format: int32
+        publicAreaSpace:
+          type: string
+        publicAreaFloors:
+          type: string
+        noOfGuestFloors:
+          type: integer
+          format: int32
+        noOfHotelRooms:
+          type: integer
+          format: int32
+        noOfBays:
+          type: integer
+          format: int32
+        noOfClubFloors:
+          type: integer
+          format: int32
+        noOfClubFloorRooms:
+          type: integer
+          format: int32
+        avgLengthOfStay:
+          type: number
+          format: double
+      required:
+        - avgLengthOfStay
+        - noOfBays
+        - noOfClubFloorRooms
+        - noOfClubFloors
+        - noOfGuestFloors
+        - noOfHotelEntrances
+        - noOfHotelRooms
+        - publicAreaFloors
+        - publicAreaSpace
+    HotelInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        hotelName:
+          type: string
+        headCountForIBU:
+          type: integer
+          format: int32
+        headCountForFBUInCluster:
+          type: integer
+          format: int32
+        itStandaloneHotel:
+          type: boolean
+        projectedEmpHeadCount:
+          type: integer
+          format: int32
+        itFiveStar:
+          type: boolean
+    Leave:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        leaveType:
+          type: string
+        noOfDays:
+          type: integer
+          format: int32
+    LeavesManager:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        leaves:
+          type: array
+          items:
+            $ref: "#/components/schemas/Leave"
+        total:
+          type: string
+        relieverFactor:
+          type: string
+    PublicAreaSiteManager:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        publicAreaSites:
+          type: array
+          items:
+            $ref: "#/components/schemas/PublicAreaSites"
+        total:
+          type: string
+    PublicAreaSites:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nameOfTheArea:
+          type: string
+        sqMt:
+          type: number
+          format: double
+    RoomType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        nameOfTheArea:
+          type: string
+        keys:
+          type: integer
+          format: int32
+        bays:
+          type: integer
+          format: int32
+        totalBays:
+          type: integer
+          format: int32
+        sqMt:
+          type: number
+          format: double
+    RoomTypeManager:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        roomTypes:
+          type: array
+          items:
+            $ref: "#/components/schemas/RoomType"
+        total:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+
+        status:
+          type: integer
+          format: int32
+        error:
+          type: string
+        message:
+          type: string
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+        fullname:
+          type: string
+        mobile:
+          type: string
+          pattern: "^\\d{10}$"
+        password:
+          type: string
+      required:
+        - fullname
+        - password
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - password
